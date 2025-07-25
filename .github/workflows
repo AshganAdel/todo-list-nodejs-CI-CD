@@ -1,0 +1,8 @@
+name: nodejs app CI
+on: 
+  push:
+    - main
+    paths-ignore:
+      - 'README.md'
+
+jobs:
