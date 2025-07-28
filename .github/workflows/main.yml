@@ -1,10 +1,10 @@
 name: nodejs app CI
 on: 
   push:
-    branches:
-      - main
     paths-ignore:
       - 'README.md'
+      - 'terraform/**'
+      - 'ansible/**'
 
 jobs:
   dockerize-the-application:
@@ -25,3 +25,4 @@ jobs:
         context: .
         push: true
         tags: ashganadel671/todo-list-image:latest
+ 
