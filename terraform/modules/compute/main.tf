@@ -1,20 +1,23 @@
 resource "aws_security_group" "instance" {
   name        = "k3s-security_group"
-  description = "Allow SSH, HTTP and k3s API"
+  description = "Allow SSH, HTTP and k3s ports"
   vpc_id      = var.vpc_id
 
   dynamic "ingress" {
     for_each = {
-      ssh  = { port = 22, cidrs = ["0.0.0.0/0"] }
-      http = { port = 8080, cidrs = ["0.0.0.0/0"] }
-      k3s_api = { port = 6443, cidrs = ["0.0.0.0/0"]}
-      nodeport = { port = 30080, cidrs = ["0.0.0.0/0"] }
+      ssh  = { port = 22, cidrs = ["0.0.0.0/0"], protocol = "tcp"}
+      http = { port = 8080, cidrs = ["0.0.0.0/0"], protocol = "tcp" }
+      k3s_api = { port = 6443, cidrs = ["0.0.0.0/0"], protocol = "tcp" }
+      nodeport = { port = 30080, cidrs = ["0.0.0.0/0"], protocol = "tcp"}
+      kubelet = { port = 10250, cidrs = ["0.0.0.0/0"], protocol = "tcp"}
+      Flannel_VXLAN = { port = 8472, cidrs = ["0.0.0.0/0"], protocol = "udp"}
+      
     }
     content {
       description = ingress.key
       from_port   = ingress.value.port
       to_port     = ingress.value.port
-      protocol    = "tcp"
+      protocol    = ingress.value.protocol
       cidr_blocks = ingress.value.cidrs
     }
   }
@@ -32,9 +35,10 @@ resource "aws_security_group" "instance" {
 }
 
 resource "aws_instance" "ec2_control" {
-  ami           = "ami-054b7fc3c333ac6d2"
+  ami           = "ami-05f991c49d264708f"
   instance_type = "t3.micro"
   subnet_id = var.public_subnet_id
+  key_name = aws_key_pair.generated_key.key_name
   vpc_security_group_ids = [ aws_security_group.instance.id ]
   tags = {
     Name = "control_plane"
@@ -42,9 +46,10 @@ resource "aws_instance" "ec2_control" {
 }
 
 resource "aws_instance" "ec2_agent" {
-  ami           = "ami-054b7fc3c333ac6d2"
+  ami           = "ami-05f991c49d264708f"
   instance_type = "t3.micro"
   subnet_id = var.public_subnet_id
+  key_name = aws_key_pair.generated_key.key_name
   vpc_security_group_ids = [ aws_security_group.instance.id ]
   tags = {
     Name = "agent"
