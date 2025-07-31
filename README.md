@@ -1,4 +1,4 @@
-# Todo-List-nodejs
+# Todo-List-nodejs-CI/CD
 ## Introduction
 This project demonstrates a full DevOps pipeline using **Terraform**, **Ansible**, **Docker**, **GitHub Actions**, **K3s**, and **Argo CD** to deploy a Node.js Todo List application with MongoDB.
 ---
