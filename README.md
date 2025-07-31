@@ -30,6 +30,8 @@ This project demonstrates a full DevOps pipeline using **Terraform**, **Ansible*
 
 ---
 
+[Preview the File](https://drive.google.com/file/d/1Wh0BSRWgO_4f9uIVm7rek5Dv1JCOk7W7/preview)
+
 ## ☁️ Part 2 – Infrastructure Provisioning
 
 ### ⚙️ Tools Used
