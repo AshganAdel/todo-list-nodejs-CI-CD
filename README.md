@@ -45,8 +45,6 @@ This project demonstrates a full DevOps pipeline using **Terraform**, **Ansible*
 - `terraform/`: VPC, EC2, Security Groups
 - `ansible/`: Installs, K3s
 
-![Alt text](https://drive.google.com/uc?export=view&id=152YnaJSO-CKlMn4_6HF7DrAS3drETvzz)
-
 ### Running Terraform and Ansibble locally 
 
 Terraform:
@@ -54,6 +52,8 @@ Terraform:
 terraform init
 terraform apply -var-file="var.tfvars"
 ```
+![Alt text](https://drive.google.com/uc?export=view&id=152YnaJSO-CKlMn4_6HF7DrAS3drETvzz)
+
 Ansible:
 ```bash
 ansible-playbook -i inventory.yml playbook.yml 
