@@ -6,6 +6,7 @@ on:
       - 'terraform/**'
       - 'ansible/**'
       - 'k8s/**'
+      - 'argoCD'
 
 jobs:
   dockerize-the-application:

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nodejs
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AshganAdel/todo-list-nodejs-CI-CD.git
+    path: k8s
+    targetRevision: main
+  destination:
+    server: https://35.95.85.216:6443
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+

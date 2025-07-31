@@ -1,10 +1,10 @@
 all:
   hosts:
     controlplane-node:
-      ansible_host: 35.86.217.100
+      ansible_host: 35.95.85.216
       ansible_user: ubuntu
     worker-node:
-      ansible_host: 44.250.214.120
+      ansible_host: 44.244.128.229
       ansible_user: ubuntu
 
   children:
