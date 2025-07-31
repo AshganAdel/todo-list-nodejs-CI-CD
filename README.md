@@ -41,7 +41,7 @@ This project demonstrates a full DevOps pipeline using **Terraform**, **Ansible*
 ### 📁 Files
 
 - `terraform/`: VPC, EC2, Security Groups
-- `ansible/`: Installs Docker, K3s, Argo CD
+- `ansible/`: Installs, K3s, Argo CD
 
 ### Running Terraform and Ansibble locally 
 
