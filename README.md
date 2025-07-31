@@ -19,7 +19,6 @@ This project demonstrates a full DevOps pipeline using **Terraform**, **Ansible*
 ### ✔️ Steps
 
 - Cloned: [https://github.com/Ankit6098/Todo-List-nodejs](https://github.com/Ankit6098/Todo-List-nodejs)
-- Use 
 - Dockerized app using `Dockerfile`
 - Created `.dockerignore` to exclude unnecessary files
 - Created CI workflow in `.github/workflows/main.yml`
