@@ -60,6 +60,8 @@ ansible-playbook -i inventory.yml playbook.yml
 ```
 ---
 
+![Alt text](https://drive.google.com/uc?export=view&id=1OsfZs-BPflRXqN644mMHuN7p5dJSzoKl)
+
 ## ☸️ Part 3 – Kubernetes Deployment
 
 ### 🛠 Setup
@@ -79,6 +81,8 @@ ansible-playbook -i inventory.yml playbook.yml
   - Automatically syncs changes from Git
 
 ---
+
+![Alt text](https://drive.google.com/uc?export=view&id=1C4YSnvMTiyo33beXXwtQSPdnVKODBebU)
 
 ## 🔐 Secrets
 
