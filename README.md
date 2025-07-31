@@ -1,1 +1,92 @@
 # Todo-List-nodejs
+## Introduction
+This project demonstrates a full DevOps pipeline using **Terraform**, **Ansible**, **Docker**, **GitHub Actions**, **K3s**, and **Argo CD** to deploy a Node.js Todo List application with MongoDB.
+---
+
+## ✅ Project Structure
+
+| Part | Description |
+|------|-------------|
+| Part 1 | Dockerized Node.js app with CI (GitHub Actions) pushing to a private Docker Hub repo |
+| Part 2 | Terraform + Ansible to provision and configure EC2 instances |
+| Part 3 | Kubernetes for deployment |
+| Part 4 | Argo CD for GitOps CD |
+
+---
+
+## 📦 Part 1 – Application Setup
+
+### ✔️ Steps
+
+- Cloned: [https://github.com/Ankit6098/Todo-List-nodejs](https://github.com/Ankit6098/Todo-List-nodejs)
+- Use 
+- Dockerized app using `Dockerfile`
+- Created `.dockerignore` to exclude unnecessary files
+- Created CI workflow in `.github/workflows/main.yml`
+
+### 🐳 Docker Image
+
+- Pushed to **private Docker Hub repo**
+- Built via GitHub Actions on every push to `main`
+
+---
+
+## ☁️ Part 2 – Infrastructure Provisioning
+
+### ⚙️ Tools Used
+
+- **Terraform**: Provisioned 2 EC2 instances on AWS (1 control plane, 1 worker)
+- **Ansible**: Configured the instances:
+  - Installed K3s
+
+### 📁 Files
+
+- `terraform/`: VPC, EC2, Security Groups
+- `ansible/`: Installs Docker, K3s, Argo CD
+
+### Running Terraform and Ansibble locally 
+
+Terraform:
+```bash
+terraform init
+terraform apply -var-file="var.tfvars"
+```
+Ansible:
+```bash
+ansible-playbook -i inventory.yml playbook.yml 
+```
+---
+
+## ☸️ Part 3 – Kubernetes Deployment
+
+### 🛠 Setup
+
+- Used K3s (lightweight Kubernetes) on EC2
+- Created Kubernetes `Deployment`, `Service`, and `Secret` objects
+- Used `NodePort` service to expose app
+- MongoDB URI passed securely via Kubernetes secret
+
+## 🎯 Part 4 – (Argo CD)
+
+- Argo CD installed locally 
+- GitHub repo integrated with Argo CD for Continuous Delivery
+- Argo CD tracks:
+  - Deployment YAML
+  - Service + Secret
+  - Automatically syncs changes from Git
+
+---
+
+## 🔐 Secrets
+
+- MongoDB URI and Docker credentials created manually in cluster:
+  ```bash
+  kubectl create secret generic mongodb-secret \
+    --from-literal=MONGO_URI='mongodb://user:pass@host:27017/db'
+
+  kubectl create secret docker-registry regcred \
+    --docker-username=<docker-username> \
+    --docker-password=<docker-password> \
+    --docker-email=<email>
+
+---
